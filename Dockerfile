@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/3.1.301-focal
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.301-focal
 MAINTAINER Kok How, Teh <funcoolgeek@gmail.com>
 RUN apt update -y
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
