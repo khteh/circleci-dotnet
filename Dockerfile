@@ -7,7 +7,7 @@ RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 RUN echo "Asia/Singapore" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs awscli
-ENV DOCKER_CLIENT_VER 19.03.9
+ENV DOCKER_CLIENT_VER 20.10.0
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
 RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_CLIENT_VER.tgz
 RUN mv /tmp/docker/* /usr/bin
