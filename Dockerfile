@@ -9,6 +9,8 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs awscli
 ENV DOCKER_CLIENT_VER 20.10.9
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget -q https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_CLIENT_VER.tgz
 RUN mv /tmp/docker/* /usr/bin
 RUN wget -q https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb
@@ -18,6 +20,7 @@ RUN curl -s -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-wes
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 RUN curl -sL -o /usr/local/bin/kubectl  https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod +x /usr/local/bin/kubectl
-RUN git lfs install
+RUN dotnet tool install --global dotnet-ef
+ENV PATH $PATH:/root/.dotnet/tools
 #ENTRYPOINT ["run.sh"]
 CMD ["bash"]
