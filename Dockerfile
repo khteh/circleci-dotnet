@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy
 MAINTAINER Kok How, Teh <funcoolgeek@gmail.com>
-RUN apt update -y
+RUN apt update -y --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata gnupg2 gnupg gnupg1
 RUN rm -f /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 RUN echo "Asia/Singapore" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
+RUN apt update -y --fix-missing
 RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs awscli openssh-client git
 ENV DOCKER_CLIENT_VER 24.0.1
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
