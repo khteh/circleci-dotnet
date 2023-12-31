@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy
+FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy
 MAINTAINER Kok How, Teh <funcoolgeek@gmail.com>
 RUN apt update -y --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata gnupg2 gnupg gnupg1
@@ -14,7 +14,7 @@ ENV DOCKERIZE_VERSION v0.7.0
 RUN wget -q https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_CLIENT_VER.tgz
 RUN mv /tmp/docker/* /usr/bin
-RUN wget -q https://packages.microsoft.com/config/ubuntu/23.04/packages-microsoft-prod.deb
+RUN wget -q https://packages.microsoft.com/config/ubuntu/23.10/packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN curl -sL -o /usr/local/bin/kubectl  https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
