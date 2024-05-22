@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 MAINTAINER Kok How, Teh <funcoolgeek@gmail.com>
 RUN apt update -y --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata gnupg2 gnupg gnupg1
@@ -8,7 +8,7 @@ RUN echo "Asia/Singapore" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt update -y --fix-missing
 RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs awscli openssh-client git
-ENV DOCKER_CLIENT_VER 24.0.7
+ENV DOCKER_CLIENT_VER 26.1.3
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
 ENV DOCKERIZE_VERSION v0.7.0
 RUN wget -q https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
@@ -19,7 +19,7 @@ RUN dpkg -i packages-microsoft-prod.deb
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN curl -sL -o /usr/local/bin/kubectl  https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod +x /usr/local/bin/kubectl
-RUN dotnet tool install --global dotnet-ef --version 7.0.13
+RUN dotnet tool install --global dotnet-ef --version 8.0.5
 ENV PATH $PATH:/root/.dotnet/tools
 # Create the file repository configuration:
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
