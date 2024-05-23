@@ -7,7 +7,10 @@ RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 RUN echo "Asia/Singapore" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt update -y --fix-missing
-RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs awscli openssh-client git
+RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs openssh-client git unzip
+RUN curl -sL -o /tmp/awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+RUN unzip /tmp/awscliv2.zip -d /tmp
+RUN /tmp/aws/install
 ENV DOCKER_CLIENT_VER 26.1.3
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
 ENV DOCKERIZE_VERSION v0.7.0
