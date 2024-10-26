@@ -11,9 +11,9 @@ RUN apt install -y libimage-exiftool-perl software-properties-common redis-serve
 RUN curl -sL -o /tmp/awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 RUN unzip /tmp/awscliv2.zip -d /tmp
 RUN /tmp/aws/install
-ENV DOCKER_CLIENT_VER 26.1.3
+ENV DOCKER_CLIENT_VER 27.3.1
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
-ENV DOCKERIZE_VERSION v0.7.0
+ENV DOCKERIZE_VERSION v0.8.0
 RUN wget -q https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_CLIENT_VER.tgz
 RUN mv /tmp/docker/* /usr/bin
