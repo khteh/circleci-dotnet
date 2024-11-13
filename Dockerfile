@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+FROM mcr.microsoft.com/dotnet/sdk:9.0
 MAINTAINER Kok How, Teh <funcoolgeek@gmail.com>
 RUN apt update -y --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata gnupg2 gnupg gnupg1
@@ -22,7 +22,7 @@ RUN dpkg -i packages-microsoft-prod.deb
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN curl -sL -o /usr/local/bin/kubectl  https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod +x /usr/local/bin/kubectl
-RUN dotnet tool install --global dotnet-ef --version 8.0.5
+RUN dotnet tool install --global dotnet-ef --version 9.0.0
 ENV PATH $PATH:/root/.dotnet/tools
 # Create the file repository configuration:
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
