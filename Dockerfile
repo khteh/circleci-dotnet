@@ -15,20 +15,8 @@ ENV DOCKER_CLIENT_VER 28.1.0
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
 RUN tar zxf /tmp/docker-$DOCKER_CLIENT_VER.tgz -C /tmp
 RUN mv /tmp/docker/* /usr/bin
-#RUN wget -q https://packages.microsoft.com/config/ubuntu/25.04/packages-microsoft-prod.deb
-#RUN dpkg -i packages-microsoft-prod.deb
 RUN curl -sLO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 RUN dotnet tool install --global dotnet-ef
 ENV PATH $PATH:/root/.dotnet/tools
-# Create the file repository configuration:
-#RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-# Import the repository signing key:
-#RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-# Update the package lists:
-#RUN apt update -y
-# Install the latest version of PostgreSQL.
-# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
-#RUN apt install -y postgresql
-#ENTRYPOINT ["run.sh"]
 CMD ["bash"]
