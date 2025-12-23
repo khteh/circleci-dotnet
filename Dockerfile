@@ -1,13 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0
 LABEL org.opencontainers.image.authors="Kok How, Teh <funcoolgeeek@gmail.com>"
 RUN apt update -y --fix-missing
-RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata gnupg2 gnupg gnupg1
+RUN DEBIAN_FRONTEND=noninteractive
+RUN apt install -y tzdata gnupg2 gnupg gnupg1 libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs openssh-client git unzip postgresql docker-buildx
 RUN rm -f /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 RUN echo "Asia/Singapore" | tee /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
-RUN apt update -y --fix-missing
-RUN apt install -y libimage-exiftool-perl software-properties-common redis-server sudo apt-transport-https git-lfs openssh-client git unzip postgresql docker-buildx
 RUN curl -sL -o /tmp/awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 RUN unzip /tmp/awscliv2.zip -d /tmp
 RUN /tmp/aws/install
