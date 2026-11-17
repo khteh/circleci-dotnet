@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0
+FROM mcr.microsoft.com/dotnet/sdk:11.0
 LABEL org.opencontainers.image.authors="Kok How, Teh <funcoolgeeek@gmail.com>"
 RUN apt update -y --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive
@@ -10,7 +10,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN curl -sL -o /tmp/awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 RUN unzip /tmp/awscliv2.zip -d /tmp
 RUN /tmp/aws/install
-ENV DOCKER_CLIENT_VER=29.5.0
+ENV DOCKER_CLIENT_VER=29.10.0
 RUN curl -sL -o /tmp/docker-$DOCKER_CLIENT_VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLIENT_VER.tgz
 RUN tar zxf /tmp/docker-$DOCKER_CLIENT_VER.tgz -C /tmp
 RUN mv /tmp/docker/* /usr/bin
